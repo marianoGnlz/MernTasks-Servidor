@@ -6,11 +6,12 @@ const app = express();
 
 connectarDB();
 
-app.use(cors());
+app.use(cors({ credentials: true, origin: true }));
+app.options("*", cors());
 
 app.use(express.json({ extended: true }));
 
-const port = process.env.port || 4000;
+const port = process.env.PORT || 4000;
 
 app.use('/api/usuarios', require('./routes/usuarios'));
 app.use('/api/auth', require('./routes/auth'));
